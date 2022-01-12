@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.ArrayList;
 
+//Classe pour gérer les inputs
 public class KeyHandler implements KeyListener {
 
     public static List<Key> keys = new ArrayList<>();
@@ -34,7 +35,6 @@ public class KeyHandler implements KeyListener {
         game.addKeyListener(this);
     }
 
-
     public void toggle(KeyEvent e, boolean pressed) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_Q) {
             k_left.toggle(pressed);
@@ -45,7 +45,7 @@ public class KeyHandler implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_Z) {
             k_up.toggle(pressed);
         }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_D) {
+        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
             k_down.toggle(pressed);
         }
     }

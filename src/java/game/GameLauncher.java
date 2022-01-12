@@ -14,12 +14,14 @@ public class GameLauncher {
 
         JPanel gameWindow = new JPanel();
 
+        //Création de la "zone de jeu"
         try {
             gameWindow.add(new GameplayPanel(448,496));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //Création de l'UI (pour afficher le score)
         uiPanel = new UIPanel(256,496);
         gameWindow.add(uiPanel);
 

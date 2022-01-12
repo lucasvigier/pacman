@@ -42,6 +42,7 @@ public class GameplayPanel extends JPanel implements Runnable {
         }
     }
 
+    //initialisation du jeu
     public void init() {
         running = true;
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -52,14 +53,17 @@ public class GameplayPanel extends JPanel implements Runnable {
         game = new Game();
     }
 
+    //mise à jour du jeu
     public void update() {
         game.update();
     }
 
+    //gestion des inputs
     public void input(KeyHandler key) {
         game.input(key);
     }
 
+    //"rendu du jeu" (on prépare ce qui va être affiché : un fond et les entités du jeu au dessus)
     public void render() {
         if (g != null) {
             g.drawImage(backgroundImage, 0, 0, width, height, null);
@@ -67,6 +71,7 @@ public class GameplayPanel extends JPanel implements Runnable {
         }
     }
 
+    //Affichage du jeu
     public void draw() {
         Graphics g2 = this.getGraphics();
         g2.drawImage(img, 0, 0, width, height, null);

@@ -2,7 +2,6 @@ package game.ghostStrategies;
 
 import game.Game;
 import game.GameplayPanel;
-import game.utils.Utils;
 
 public class BlinkyStrategy implements IGhostStrategy{
     @Override

@@ -15,8 +15,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Classe gérant le jeu en lui même
 public class Game implements Observer {
-    private UIPanel uiPanel;
+    //Pour lister les différentes entités présentes sur la fenêtre
     private List<Entity> objects = new ArrayList();
     private List<Ghost> ghosts = new ArrayList();
     private static List<Wall> walls = new ArrayList();
@@ -27,6 +28,9 @@ public class Game implements Observer {
     private static boolean firstInput = false;
 
     public Game(){
+        //Initialisation du jeu
+
+        //Chargement du fichier csv du niveau
         List<List<String>> data = null;
         try {
             data = new CsvReader().parseCsv(getClass().getClassLoader().getResource("level/level.csv").toURI());
@@ -40,17 +44,18 @@ public class Game implements Observer {
         CollisionDetector collisionDetector = new CollisionDetector(this);
         AbstractGhostFactory abstractGhostFactory = null;
 
+        //Le niveau a une "grille", et pour chaque case du fichier csv, on affiche une entité parculière sur une case de la grille selon le caracère présent
         for(int xx = 0 ; xx < cellsPerRow ; xx++) {
             for(int yy = 0 ; yy < cellsPerColumn ; yy++) {
                 String dataChar = data.get(yy).get(xx);
-                if (dataChar.equals("x")) {
+                if (dataChar.equals("x")) { //Création d'un mur
                     objects.add(new Wall(xx * cellSize, yy * cellSize));
-                }else if (dataChar.equals("P")) {
+                }else if (dataChar.equals("P")) { //Création de Pacman
                     pacman = new Pacman(xx * cellSize, yy * cellSize);
                     pacman.setCollisionDetector(collisionDetector);
                     pacman.registerObserver(this);
                     pacman.registerObserver(GameLauncher.getUIPanel());
-                }else if (dataChar.equals("b") || dataChar.equals("p") || dataChar.equals("i") || dataChar.equals("c")) {
+                }else if (dataChar.equals("b") || dataChar.equals("p") || dataChar.equals("i") || dataChar.equals("c")) { //Création des fantômes
                     switch (dataChar) {
                         case "b":
                             abstractGhostFactory = new BlinkyFactory();
@@ -71,11 +76,11 @@ public class Game implements Observer {
                     if (dataChar.equals("b")) {
                         blinky = (Blinky) ghost;
                     }
-                }else if (dataChar.equals(".")) {
+                }else if (dataChar.equals(".")) { //Création des PacGums
                     objects.add(new PacGum(xx * cellSize, yy * cellSize));
-                }else if (dataChar.equals("o")) {
+                }else if (dataChar.equals("o")) { //Création des SuperPacGums
                     objects.add(new SuperPacGum(xx * cellSize, yy * cellSize));
-                }else if (dataChar.equals("-")) {
+                }else if (dataChar.equals("-")) { //Création des murs de la maison des fantômes
                     objects.add(new GhostHouse(xx * cellSize, yy * cellSize));
                 }
             }
@@ -98,16 +103,19 @@ public class Game implements Observer {
         return objects;
     }
 
+    //Mise à jour de toutes les entités
     public void update() {
         for (Entity o: objects) {
             if (!o.isDestroyed()) o.update();
         }
     }
 
+    //Gestion des inputs
     public void input(KeyHandler k) {
         pacman.input(k);
     }
 
+    //Rendu de toutes les entités
     public void render(Graphics2D g) {
         for (Entity o: objects) {
             if (!o.isDestroyed()) o.render(g);
@@ -121,25 +129,26 @@ public class Game implements Observer {
         return blinky;
     }
 
+    //Le jeu est notifiée lorsque Pacman est en contact avec une PacGum, une SuperPacGum ou un fantôme
     @Override
     public void updatePacGumEaten(PacGum pg) {
-        pg.destroy();
+        pg.destroy(); //La PacGum est détruite quand Pacman la mange
     }
 
     @Override
     public void updateSuperPacGumEaten(SuperPacGum spg) {
-        spg.destroy();
+        spg.destroy(); //La SuperPacGum est détruite quand Pacman la mange
         for (Ghost gh : ghosts) {
-            gh.getState().superPacGumEaten();
+            gh.getState().superPacGumEaten(); //S'il existe une transition particulière quand une SuperPacGum est mangée, l'état des fantômes change
         }
     }
 
     @Override
     public void updateGhostCollision(Ghost gh) {
         if (gh.getState() instanceof FrightenedMode) {
-            gh.getState().eaten();
+            gh.getState().eaten(); //S'il existe une transition particulière quand le fantôme est mangé, son état change en conséquence
         }else if (!(gh.getState() instanceof EatenMode)) {
-            System.out.println("game over !");
+            System.out.println("game over !"); //Quand Pacman rentre en contact avec un Fantôme qui n'est ni effrayé, ni mangé, c'est game over !
             System.exit(0); //TODO
         }
     }
