@@ -30,6 +30,8 @@ Le pattern State est donc idéal dans ce cas. en respectant le principe de respo
  * Lorsque Pacman mange une SuperPacGum, le score affiché géré par la classe "UIPanel" augmente de 100, et la classe "Game" gérant toutes les entités doit considérer cette SuperPacGum comme détruite  et faire passer les fantômes dans l'état "FrightenedMode".
  * Lorsque Pacman entre en contact avec un fantôme, si ce dernier n'est ni dans l'état "FrightenedMode", ni "EatenMode", la classe Game indique que c'est game over ! Sinon, si le fantôme est dans l'état "FrightenedMode", ce dernier passe dans l'état "EatenMode" et le score affiché augmente de 500.
  
+_____
+ 
 ***Notes*** *:
 Grâce à ces patterns, il serait par exemple facile d'ajouter d'autres types de fantômes avec leur propres comportements, ou de leur ajouter d'autres états particuliers sans avoir à modifier le contexte existant. 
-Toutefois, après réflexion, la classe "Game" devrait peut être avoir moins de responsabilités, par exemple les fantômes pourraient implémenter eux-même l'interface "Observer"*
+Toutefois, après réflexion, on peut noter que la classe "Game" devrait peut-être avoir moins de responsabilités, par exemple les fantômes pourraient implémenter eux-même l'interface "Observer"*
