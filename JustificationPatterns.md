@@ -31,5 +31,5 @@ Le pattern State est donc idéal dans ce cas. en respectant le principe de respo
  * Lorsque Pacman entre en contact avec un fantôme, si ce dernier n'est ni dans l'état "FrightenedMode", ni "EatenMode", la classe Game indique que c'est game over ! Sinon, si le fantôme est dans l'état "FrightenedMode", ce dernier passe dans l'état "EatenMode" et le score affiché augmente de 500.
  
 ***Notes*** *:
-Grâce à ces patterns, il serait par exemple facile d'ajouter d'autres types de fantômes avec leur propres comportements, ou de leur ajouter d'autres états particuliers sans avoir à modifier le contexte existant.
-Néanmoins, apès réflexion, la classe "Game" devrait peut être avoir moins de responsabilités, par exemple les fantômes pourraient implémenter eux-même l'interface "Observer"*
+Grâce à ces patterns, il serait par exemple facile d'ajouter d'autres types de fantômes avec leur propres comportements, ou de leur ajouter d'autres états particuliers sans avoir à modifier le contexte existant. 
+Toutefois, après réflexion, la classe "Game" devrait peut être avoir moins de responsabilités, par exemple les fantômes pourraient implémenter eux-même l'interface "Observer"*
