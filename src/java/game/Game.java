@@ -48,14 +48,16 @@ public class Game implements Observer {
         for(int xx = 0 ; xx < cellsPerRow ; xx++) {
             for(int yy = 0 ; yy < cellsPerColumn ; yy++) {
                 String dataChar = data.get(yy).get(xx);
-                if (dataChar.equals("x")) { //Création d'un mur
+                if (dataChar.equals("x")) { //Création des murs
                     objects.add(new Wall(xx * cellSize, yy * cellSize));
                 }else if (dataChar.equals("P")) { //Création de Pacman
                     pacman = new Pacman(xx * cellSize, yy * cellSize);
                     pacman.setCollisionDetector(collisionDetector);
+
+                    //Enregistrement des différents observers de Pacman
                     pacman.registerObserver(GameLauncher.getUIPanel());
                     pacman.registerObserver(this);
-                }else if (dataChar.equals("b") || dataChar.equals("p") || dataChar.equals("i") || dataChar.equals("c")) { //Création des fantômes
+                }else if (dataChar.equals("b") || dataChar.equals("p") || dataChar.equals("i") || dataChar.equals("c")) { //Création des fantômes en utilisant les différentes factories
                     switch (dataChar) {
                         case "b":
                             abstractGhostFactory = new BlinkyFactory();

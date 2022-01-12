@@ -11,6 +11,7 @@ import game.utils.WallCollisionDetector;
 import java.util.ArrayList;
 import java.util.List;
 
+//Classe pour décrire Pacman
 public class Pacman extends MovingEntity implements Sujet {
     private CollisionDetector collisionDetector;
     private List<Observer> observerCollection;
@@ -20,13 +21,15 @@ public class Pacman extends MovingEntity implements Sujet {
         observerCollection = new ArrayList<>();
     }
 
+    //Gestion des déplacements
     public void input(KeyHandler k) {
         int new_xSpd = 0;
         int new_ySpd = 0;
 
-        if (!onTheGrid()) return;
-        if (!onGameplayWindow()) return;
+        if (!onTheGrid()) return; //Pacman doit être sur une "case" de la zone de jeu
+        if (!onGameplayWindow()) return; //Pacman doit être dans la zone de jeu
 
+        //Selon les touches appuyées, la direction de pacman change en conséquence
         if (k.k_left.isPressed && xSpd >= 0 && !WallCollisionDetector.checkWallCollision(this, -spd, 0)) {
             new_xSpd = -spd;
         }
@@ -60,6 +63,7 @@ public class Pacman extends MovingEntity implements Sujet {
 
     @Override
     public void update() {
+        //On teste à chaque fois si Pacman est en contact avec une PacGum, une SuperPacGum, ou un fantôme, et les observers sont notifiés en conséquence
         PacGum pg = (PacGum) collisionDetector.checkCollision(this, PacGum.class);
         if (pg != null) {
             notifyObserverPacGumEaten(pg);
@@ -75,7 +79,7 @@ public class Pacman extends MovingEntity implements Sujet {
             notifyObserverGhostCollision(gh);
         }
 
-
+        //S'il n'y a pas de mur à la prochaine position potentielle de Pacman, on met à jour sa position
         if (!WallCollisionDetector.checkWallCollision(this, xSpd, ySpd)) {
             updatePosition();
         }
