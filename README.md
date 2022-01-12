@@ -28,7 +28,7 @@ Runs using _java.swing_ library and the **Factory**, **State** and **Strategy** 
 ___
 ## Setup
 
-Prerequisites: You must have [Git](https://git-scm.com/downloads) installed on your console and also [Java](https://www.java.com/en/download/)
+Prerequisites: You must have [Java](https://www.java.com/en/download/) installed on your computer.
 
 1. On GitHub, go to the main page of the [repository](https://github.com/lucasvigier/pacman).
 2. Go to the ``Releases`` [section](https://github.com/lucasvigier/pacman/releases/tag/production), and download the file ``pacman.jar``
