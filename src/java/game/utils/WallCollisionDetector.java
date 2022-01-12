@@ -7,7 +7,7 @@ import game.entities.Wall;
 
 import java.awt.*;
 
-//Classe pour détecter les collision entre une entité et un mur
+//Classe pour détecter les collision entre une entité et un mur (par rapport à la classe CollisionDetector, les murs sont statiques)
 public class WallCollisionDetector {
 
     //Fonction pour s'avoir s'il y a un mur à la position d'une entité + un certain delta (ce delta permet de détecter le mur avant de rentrer dedans)

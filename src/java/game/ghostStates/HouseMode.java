@@ -1,20 +1,22 @@
 package game.ghostStates;
 
-import game.Game;
 import game.entities.ghosts.Ghost;
 import game.utils.Utils;
 import game.utils.WallCollisionDetector;
 
+//Classe pour décrire l'état concret d'un fantôme dans sa maison
 public class HouseMode extends GhostState{
     public HouseMode(Ghost ghost) {
         super(ghost);
     }
 
+    //Transition lorsque le fantôme est hors de sa maison
     @Override
     public void outsideHouse() {
         this.ghost.switchChaseModeOrScatterMode();
     }
 
+    //Dans cet état, la position ciblée est la case juste au dessus de la maison des fantômes
     @Override
     public int[] getTargetPosition(){
         int[] position = new int[2];
@@ -23,6 +25,7 @@ public class HouseMode extends GhostState{
         return position;
     }
 
+    //Même chose que la méthode de la classe abstraite, mais on ignore ici les collisions avec les murs de la maison des fantômes
     @Override
     public void computeNextDir() {
         int new_xSpd = 0;
