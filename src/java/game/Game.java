@@ -53,8 +53,8 @@ public class Game implements Observer {
                 }else if (dataChar.equals("P")) { //Création de Pacman
                     pacman = new Pacman(xx * cellSize, yy * cellSize);
                     pacman.setCollisionDetector(collisionDetector);
-                    pacman.registerObserver(this);
                     pacman.registerObserver(GameLauncher.getUIPanel());
+                    pacman.registerObserver(this);
                 }else if (dataChar.equals("b") || dataChar.equals("p") || dataChar.equals("i") || dataChar.equals("c")) { //Création des fantômes
                     switch (dataChar) {
                         case "b":
@@ -148,7 +148,7 @@ public class Game implements Observer {
         if (gh.getState() instanceof FrightenedMode) {
             gh.getState().eaten(); //S'il existe une transition particulière quand le fantôme est mangé, son état change en conséquence
         }else if (!(gh.getState() instanceof EatenMode)) {
-            System.out.println("game over !"); //Quand Pacman rentre en contact avec un Fantôme qui n'est ni effrayé, ni mangé, c'est game over !
+            System.out.println("Game over !\nScore : " + GameLauncher.getUIPanel().getScore()); //Quand Pacman rentre en contact avec un Fantôme qui n'est ni effrayé, ni mangé, c'est game over !
             System.exit(0); //TODO
         }
     }

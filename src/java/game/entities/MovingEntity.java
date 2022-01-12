@@ -1,16 +1,13 @@
 package game.entities;
 
 import game.GameplayPanel;
-import game.utils.CollisionDetector;
-import game.utils.WallCollisionDetector;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+//Classe abtraite pour décrire une entité mouvante
 public abstract class MovingEntity extends Entity {
-
     protected int spd;
     protected int xSpd = 0;
     protected int ySpd = 0;
@@ -38,10 +35,12 @@ public abstract class MovingEntity extends Entity {
     }
 
     public void updatePosition() {
-        if (!(xSpd == 0 && ySpd == 0)) {
+        //Mise à jour de la position de l'entité
+        if (!(xSpd == 0 && ySpd == 0)) { //Si la vitesse horizontale ou la vitesse verticale n'est pas nulle, on incrémente la position horizontale et verticale en conséquence
             xPos+=xSpd;
             yPos+=ySpd;
 
+            //En fonction de la direction emprunté, on change la valeur de la direction (un entier permettant de savoir la partie de l'image à afficher notamment)
             if (xSpd > 0) {
                 direction = 0;
             } else if (xSpd < 0) {
@@ -52,12 +51,14 @@ public abstract class MovingEntity extends Entity {
                 direction = 3;
             }
 
+            //On incrémente la valeur de l'image courante de l'animation à afficher (la vitesse peut varier), et selon le nombre d'images de l'animation, la valeur fait une boucle
             subimage += imageSpd;
             if (subimage >= nbSubimagesPerCycle) {
                 subimage = 0;
             }
         }
 
+        //Si l'entité va au dela des bords de la zone de jeu, elle passe de l'autre côté
         if (xPos > GameplayPanel.width) {
             xPos = 0 - size + spd;
         }
@@ -77,12 +78,17 @@ public abstract class MovingEntity extends Entity {
 
     @Override
     public void render(Graphics2D g) {
+        //Par défaut, on considère que chaque "sprite" contient 4 variations de l'animation correspondant à une direction et chaque animation a un certain nombre d'images
+        //En sachant cela, on affiche seulement la partie de l'image du sprite correspondant à la bonne direction et à la bonne frame de l'animation
         g.drawImage(sprite.getSubimage((int)subimage * size + direction * size * nbSubimagesPerCycle, 0, size, size), this.xPos, this.yPos,null);
     }
 
+    //Méthode pour savoir si l'entité est bien positionnée sur une case de la grille de la zone de jeu ou non
     public boolean onTheGrid() {
         return (xPos%8 == 0 && yPos%8 == 0);
     }
+
+    //Méthode pour savoir si l'entité est dans la zone de jeu ou non
     public boolean onGameplayWindow() { return !(xPos<=0 || xPos>= GameplayPanel.width || yPos<=0 || yPos>= GameplayPanel.height); }
 
     public Rectangle getHitbox() {

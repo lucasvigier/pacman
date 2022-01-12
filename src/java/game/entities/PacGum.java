@@ -2,6 +2,7 @@ package game.entities;
 
 import java.awt.*;
 
+//Classe pour les PacGums
 public class PacGum extends StaticEntity {
     public PacGum(int xPos, int yPos) {
         super(4, xPos + 8, yPos + 8);

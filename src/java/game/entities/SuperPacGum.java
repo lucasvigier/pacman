@@ -2,6 +2,7 @@ package game.entities;
 
 import java.awt.*;
 
+//Classe pour les SuperPacGums
 public class SuperPacGum extends StaticEntity {
     private int frameCount = 0;
 
@@ -11,7 +12,8 @@ public class SuperPacGum extends StaticEntity {
 
     @Override
     public void render(Graphics2D g) {
-        if (frameCount%60 <= 30) {
+        //Pour faire en sorte que les SuperPacGums clignotent, on ne fait le rendu que 30 frames sur 60.
+        if (frameCount%60 < 30) {
             g.setColor(new Color(255, 183, 174));
             g.fillOval(this.xPos, this.yPos, this.size, this.size);
         }

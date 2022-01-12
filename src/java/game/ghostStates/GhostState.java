@@ -84,7 +84,7 @@ public abstract class GhostState {
             ghost.setxSpd(new_xSpd);
             ghost.setySpd(new_ySpd);
         } else {
-            if (ghost.getxSpd() != 0) {
+            if (new_xSpd != 0) {
                 ghost.setxSpd(0);
                 ghost.setxSpd(new_ySpd);
             }else{

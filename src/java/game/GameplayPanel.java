@@ -63,7 +63,7 @@ public class GameplayPanel extends JPanel implements Runnable {
         game.input(key);
     }
 
-    //"rendu du jeu" (on prépare ce qui va être affiché : un fond et les entités du jeu au dessus)
+    //"rendu du jeu" ; on prépare ce qui va être affiché en dessinant sur une "image" : un fond et les entités du jeu au dessus
     public void render() {
         if (g != null) {
             g.drawImage(backgroundImage, 0, 0, width, height, null);
@@ -71,7 +71,7 @@ public class GameplayPanel extends JPanel implements Runnable {
         }
     }
 
-    //Affichage du jeu
+    //Affichage du jeu : on affiche l'image avec le rendu
     public void draw() {
         Graphics g2 = this.getGraphics();
         g2.drawImage(img, 0, 0, width, height, null);
@@ -82,7 +82,7 @@ public class GameplayPanel extends JPanel implements Runnable {
     public void run() {
         init();
 
-        //Pour faire en sorte que le jeu tourne à 60FPS (tutoriel utilisé : https://www.youtube.com/watch?v=LhUN3EKZiio)
+        //Pour faire en sorte que le jeu tourne à 60FPS (tutoriel consulté : https://www.youtube.com/watch?v=LhUN3EKZiio)
         final double GAME_HERTZ = 60.0;
         final double TBU = 1000000000 / GAME_HERTZ; //Time before update
 
@@ -120,7 +120,7 @@ public class GameplayPanel extends JPanel implements Runnable {
             int thisSecond = (int) (lastUpdateTime / 1000000000);
             if (thisSecond > lastSecondTime) {
                 if (frameCount != oldFrameCount) {
-                    System.out.println("FPS : " + frameCount);
+                    //System.out.println("FPS : " + frameCount);
                     oldFrameCount = frameCount;
                 }
                 frameCount = 0;

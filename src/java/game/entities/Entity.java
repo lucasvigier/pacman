@@ -2,8 +2,8 @@ package game.entities;
 
 import java.awt.*;
 
+//Classe abtraite pour décrite une entité
 public abstract class Entity {
-
     protected int size;
     protected int xPos;
     protected int yPos;

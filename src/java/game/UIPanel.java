@@ -32,6 +32,10 @@ public class UIPanel extends JPanel implements Observer {
         this.scoreLabel.setText("Score: " + score);
     }
 
+    public int getScore() {
+        return score;
+    }
+
     //L'interface est notifiée lorsque Pacman est en contact avec une PacGum, une SuperPacGum ou un fantôme, et on met à jour le score affiché en conséquence
     @Override
     public void updatePacGumEaten(PacGum pg) {
