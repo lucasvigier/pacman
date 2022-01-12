@@ -35,7 +35,7 @@ Prerequisites: You must have [Git](https://git-scm.com/downloads) installed on y
 3. Run the game with the command :
 
     ```
-    $ java -jar pacman.jar
+    java -jar pacman.jar
     ```
     (*Or just double click the file on Windows*)
 4. Enjoy !
