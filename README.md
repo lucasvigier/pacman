@@ -31,23 +31,13 @@ ___
 Prerequisites: You must have [Git](https://git-scm.com/downloads) installed on your console and also [Java](https://www.java.com/en/download/)
 
 1. On GitHub, go to the main page of the [repository](https://github.com/lucasvigier/pacman).
-2. Under the name of the repository, click Clone or download.
-3. In the Clone with HTTPs section, click to copy the repository cloning URL.
-4. Open Git Bash.
-5. Change the current working directory to the location where you want the cloned directory to be made.
-6. Type ``git clone``, and then paste the URL that you copied in Step 2.
-
-   ```bash
-   $ git clone https://github.com/lucasvigier/pacman
-   ```
-   
-7. Press Enter. Your local clone will be created for [pacman](https://github.com/lucasvigier/pacman).
-8. Compile the game with Java.
-
-    ```bash
-    $ javac -d bin src/java/game/GameLauncher.java
+2. Go to the ``Releases`` [section](https://github.com/lucasvigier/pacman/releases/tag/production), and download the file ``pacman.jar``
+3. Run the game with the command :
     ```
-9. Run the game with ``java src/java/game/GameLauncher``.
+    $ java -jar pacman.jar
+    ```
+    (*Or just double click the file on Windows*)
+4. Enjoy !
 
 ___
 ## License
