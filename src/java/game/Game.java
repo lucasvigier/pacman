@@ -11,7 +11,7 @@ import game.utils.CsvReader;
 import game.utils.KeyHandler;
 
 import java.awt.*;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,12 @@ public class Game implements Observer {
     private static boolean firstInput = false;
 
     public Game(){
-        List<List<String>> data = new CsvReader().parseCsv(Paths.get("src/resources/level/level.csv").toUri());
+        List<List<String>> data = null;
+        try {
+            data = new CsvReader().parseCsv(getClass().getClassLoader().getResource("level/level.csv").toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         int cellsPerRow = data.get(0).size();
         int cellsPerColumn = data.size();
         int cellSize = 8;

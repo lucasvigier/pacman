@@ -8,9 +8,7 @@ import game.ghostStrategies.IGhostStrategy;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public abstract class Ghost extends MovingEntity {
     protected GhostState state;
@@ -42,9 +40,9 @@ public abstract class Ghost extends MovingEntity {
         state = houseMode;
 
         try {
-            frightenedSprite1 = ImageIO.read(new File(Paths.get("src/resources/img/ghost_frightened.png").toUri()));
-            frightenedSprite2 = ImageIO.read(new File(Paths.get("src/resources/img/ghost_frightened_2.png").toUri()));
-            eatenSprite = ImageIO.read(new File(Paths.get("src/resources/img/ghost_eaten.png").toUri()));
+            frightenedSprite1 = ImageIO.read(getClass().getClassLoader().getResource("img/ghost_frightened.png"));
+            frightenedSprite2 = ImageIO.read(getClass().getClassLoader().getResource("img/ghost_frightened_2.png"));
+            eatenSprite = ImageIO.read(getClass().getClassLoader().getResource("img/ghost_eaten.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,9 +7,7 @@ import game.utils.WallCollisionDetector;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public abstract class MovingEntity extends Entity {
 
@@ -26,7 +24,7 @@ public abstract class MovingEntity extends Entity {
         super(size, xPos, yPos);
         this.spd = spd;
         try {
-            this.sprite = ImageIO.read(new File(Paths.get("src/resources/img/" + spriteName).toUri()));
+            this.sprite = ImageIO.read(getClass().getClassLoader().getResource("img/" + spriteName));
             this.nbSubimagesPerCycle = nbSubimagesPerCycle;
             this.imageSpd = imageSpd;
         } catch (IOException e) {
@@ -101,7 +99,7 @@ public abstract class MovingEntity extends Entity {
 
     public void setSprite(String spriteName) {
         try {
-            this.sprite = ImageIO.read(new File(Paths.get("src/resources/img/" + spriteName).toUri()));
+            this.sprite = ImageIO.read(getClass().getClassLoader().getResource("img/" + spriteName));
         } catch (IOException e) {
             e.printStackTrace();
         }

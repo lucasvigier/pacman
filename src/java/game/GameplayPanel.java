@@ -6,9 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 //Panneau de la "zone de jeu"
 public class GameplayPanel extends JPanel implements Runnable {
@@ -31,7 +29,7 @@ public class GameplayPanel extends JPanel implements Runnable {
         setPreferredSize(new Dimension(width, height));
         setFocusable(true);
         requestFocus();
-        backgroundImage = ImageIO.read(new File(Paths.get("src/resources/img/background.png").toUri()));
+        backgroundImage = ImageIO.read(getClass().getClassLoader().getResource("img/background.png"));
     }
 
     @Override
