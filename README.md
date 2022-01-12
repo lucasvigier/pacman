@@ -33,6 +33,7 @@ Prerequisites: You must have [Git](https://git-scm.com/downloads) installed on y
 1. On GitHub, go to the main page of the [repository](https://github.com/lucasvigier/pacman).
 2. Go to the ``Releases`` [section](https://github.com/lucasvigier/pacman/releases/tag/production), and download the file ``pacman.jar``
 3. Run the game with the command :
+
     ```
     $ java -jar pacman.jar
     ```
