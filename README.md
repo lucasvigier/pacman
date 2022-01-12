@@ -13,7 +13,7 @@ ___
 ## General info
 Good ol' PacMan.
 
-To play, you just need to use the arrow keys on your keyboard ◀️ ▶️ 🔼 🔽 (or with ZQSD)🇿 🇶 🇸 🇩.
+To play, you just need to use the arrow keys on your keyboard ◀️ ▶️ 🔼 🔽 (or with 🇿 🇶 🇸 🇩).
 Avoid traps, eat some super pac gums and chase the 👻 to eat them.
 <br />
 What's the best score you can get ?
